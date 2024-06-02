@@ -1,0 +1,50 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<div class="contanier">
+    <main>
+        <div class="search-container">
+            <div class="title">
+                <h2>Enter Movie Name</h2>
+            </div>
+            <input type="text" placeholder="Type Movie Name" id="movie-name" required>
+            <button id="clicked">Search</button>
+        </div>
+    </main>
+    
+    <%if(!locals.user){%>
+        <div id="note">
+            <h1 style="padding: 20px;">Note: Please <a href="http://localhost:8000/users/signin" style="font-weight: bolder;text-transform: uppercase;">Sign-In</a> to create playlist, you can search movie without login</h1>
+        </div>
+    <%}%> 
+
+    <div id="result">             
+    </div>
+
+    <%if(locals.user){%>
+    <div id="add-to-playlist">
+    <%}%>
+    </div>
+    
+    <div class="movies-list">
+        <%if (locals.user){%>
+            <h1 style="text-transform: uppercase;padding-bottom: 30px;">Playlist</h1>
+            <% if (movies.length === 0) { %>
+              <p>The list is empty. please search the movie and add to the list</p>
+            <% } else { %>
+              <% for (const list of movies) { %>
+                <% if (locals.user && locals.user.id === list.user.id) { %>
+                  <ul>
+                    <li><%= list.movie %></li>
+                    <li>
+                      <a href="/movies/destroy/<%= list._id %>">
+                        <i class="material-icons">delete</i>
+                      </a>
+                    </li>
+                  </ul>
+                <% } %>
+              <% } %>
+            <% } %>
+        <% } %>   
+    </div>
+
+</div>
+<script src="/scripts/script.js"></script>

@@ -20,6 +20,7 @@
     "express-session": "^1.17.3",
     "mongo-store": "^0.0.2",
     "mongoose": "^6.3.6",
+    "nodemon": "^3.1.2",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0"
   }
